@@ -48,5 +48,13 @@ public interface CourseServiceInterface
     public void updateDuration(int id, int duration);
 
     
+    /**
+     * Obtiene una lista de cursos cuyos precios se encuentran dentro de un rango
+     * especificado.
+     *
+     * @param minPrice El precio mínimo del rango.
+     * @param maxPrice El precio máximo del rango.
+     * @return Una lista de cursos que cumplen con el rango de precio especificado.
+     */
     public List<Course> getByPriceRange(int minPrice, int maxPrice);
 }

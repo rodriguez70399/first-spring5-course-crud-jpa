@@ -80,11 +80,18 @@ public class CourseController
         this.service.updateDuration(id, duration);
     }
 
+    /**
+     * Obtiene una lista de cursos cuyos precios se encuentran dentro de un rango
+     * especificado.
+     *
+     * @param minPrice El precio mínimo del rango.
+     * @param maxPrice El precio máximo del rango.
+     * @return Una lista de cursos que cumplen con el rango de precio especificado.
+     * @apiNote GET /course?minPrice=100&maxPrice=500
+     */
     @GetMapping(value = "course", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Course> getByPriceRange(@RequestParam("minPrice") int minPrice, @RequestParam("maxPrice") int maxPrice)
     {
         return this.service.getByPriceRange(minPrice, maxPrice);
-    }
-
-    
+    }    
 }
