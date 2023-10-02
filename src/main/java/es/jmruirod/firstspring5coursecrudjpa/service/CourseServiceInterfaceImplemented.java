@@ -19,6 +19,17 @@ public class CourseServiceInterfaceImplemented implements CourseServiceInterface
 {
     @Autowired
     private CourseDao courseDao;
+
+    /**
+     * Obtiene una lista de todos los cursos.
+     * 
+     * @return Lista de cursos.
+     */
+    @Override
+    public List<Course> getAll() 
+    {
+        return this.courseDao.findAll();
+    }
     
     /**
      * Crea un nuevo curso.
@@ -47,18 +58,6 @@ public class CourseServiceInterfaceImplemented implements CourseServiceInterface
     }
 
     /**
-     * Busca un curso por su ID.
-     *
-     * @param id El ID del curso que se va a buscar.
-     * @return El curso encontrado o null si no se encuentra.
-     */
-    @Override
-    public Course findById(int id) 
-    {
-        return this.courseDao.findById(id).orElse(null);
-    }
-
-    /**
      * Actualiza la duración de un curso por su ID.
      *
      * @param id       El ID del curso que se va a actualizar.
@@ -69,6 +68,19 @@ public class CourseServiceInterfaceImplemented implements CourseServiceInterface
     {
         Course course = this.findById(id);
         course.setDuration(duration);
+        this.courseDao.save(course);
+    }
+
+    /**
+     * Busca un curso por su ID.
+     *
+     * @param id El ID del curso que se va a buscar.
+     * @return El curso encontrado o null si no se encuentra.
+     */
+    @Override
+    public Course findById(int id) 
+    {
+        return this.courseDao.findById(id).orElse(null);
     }
 
     /**

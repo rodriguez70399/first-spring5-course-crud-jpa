@@ -1,5 +1,7 @@
 package es.jmruirod.firstspring5coursecrudjpa.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +18,7 @@ public class Course
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private int id;
     private String name;
     private int duration;
     private int price;
@@ -52,7 +54,7 @@ public class Course
      */
     public Course(int id, String name, int duration, int price) 
     {
-        Id = id;
+        this.id = id;
         this.name = name;
         this.duration = duration;
         this.price = price;
@@ -65,7 +67,7 @@ public class Course
      */
     public int getId() 
     {
-        return Id;
+        return this.id;
     }
 
     /**
@@ -75,7 +77,7 @@ public class Course
      */
     public void setId(int id) 
     {
-        Id = id;
+        this.id = id;
     }
 
     /**
@@ -85,7 +87,7 @@ public class Course
      */
     public String getName() 
     {
-        return name;
+        return this.name;
     }
 
     /**
@@ -105,7 +107,7 @@ public class Course
      */
     public int getDuration() 
     {
-        return duration;
+        return this.duration;
     }
 
     /**
@@ -125,7 +127,7 @@ public class Course
      */
     public int getPrice() 
     {
-        return price;
+        return this.price;
     }
 
     /**
@@ -136,5 +138,58 @@ public class Course
     public void setPrice(int price) 
     {
         this.price = price;
-    }   
+    }
+
+    @Override
+    public String toString() 
+    {
+        return "Course [Id=" + id + ", name=" + name + ", duration=" + duration + ", price=" + price + "]";
+    }
+
+    /**
+     * Calcula el hash code del objeto Course basado en el id.
+     */
+    @Override
+    public int hashCode() 
+    {
+        return Objects.hashCode(id);
+    }
+
+    /**
+     * Compara dos objetos Course para determinar si son iguales.
+     * Dos cursos son iguales si tienen el mismo id, nombre, duración y precio.
+     */
+    @Override
+    public boolean equals(Object obj) 
+    {
+        if (this == obj)
+            return true;
+
+        if (obj == null)
+            return false;
+
+        if (getClass() != obj.getClass())
+            return false;
+
+        Course other = (Course) obj;
+
+        if (id != other.id)
+            return false;
+
+        if (name == null) 
+        {
+            if (other.name != null)
+                return false;
+        } 
+        else if (!name.equals(other.name))
+            return false;
+
+        if (duration != other.duration)
+            return false;
+
+        if (price != other.price)
+            return false;
+
+        return true;
+    }    
 }

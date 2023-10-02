@@ -29,6 +29,19 @@ public class CourseController
     private CourseServiceInterface service;
 
     /**
+     * Obtiene una lista de todos los cursos.
+     * 
+     * @return Lista de cursos en formato JSON.
+     * @apiNote Método GET para obtener todos los cursos.
+     * @apiNote Dirección: /courses
+     */
+    @GetMapping(value = "courses", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Course> getAll()
+    {
+        return this.service.getAll();
+    }
+
+    /**
      * Crea un nuevo curso.
      *
      * @param course El curso que se va a crear en formato JSON.
@@ -55,6 +68,19 @@ public class CourseController
     }
 
     /**
+     * Actualiza la duración de un curso por su ID.
+     *
+     * @param id       El ID del curso que se va a actualizar.
+     * @param duration La nueva duración del curso.
+     * @apiNote PUT /course/1?duration=20
+     */
+    @PutMapping(value = "course/{id}")
+    public void updateDutation(@PathVariable int id, @RequestParam int duration)
+    {
+        this.service.updateDuration(id, duration);
+    }
+
+    /**
      * Busca un curso por su ID.
      *
      * @param id El ID del curso que se va a buscar.
@@ -65,19 +91,6 @@ public class CourseController
     public Course findById(@PathVariable int id)
     {
         return this.service.findById(id);
-    }
-
-    /**
-     * Actualiza la duración de un curso por su ID.
-     *
-     * @param id       El ID del curso que se va a actualizar.
-     * @param duration La nueva duración del curso.
-     * @apiNote PUT /course/1?duration=20
-     */
-    @PutMapping(value = "course/{id}")
-    public void update(@PathVariable int id, @RequestParam int duration)
-    {
-        this.service.updateDuration(id, duration);
     }
 
     /**
