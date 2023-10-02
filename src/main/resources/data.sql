@@ -1,0 +1,1 @@
+INSERT INTO `course` VALUES (1,'Java 17',20,30),(2,'JavaScript',10,10),(3,'Python',5,15),(4,'Spring',50,90);
